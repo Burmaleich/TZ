@@ -1,14 +1,14 @@
 // SPIKES
 
-new spikesmax[MAX_PLAYERS] = 0; // Проверка на кол-во установленных шипов
-new spikesobj[1000]; // Объекты, привязка к иду объектов
-new spikesobjslot[1000] = 0; // Пометка о занятых объектах
-new spikeowner[1000][MAX_PLAYER_NAME]; // Владельцы шипов
-new Text3D:spikes3d[1000]; // 3dtext к шипам
-new spikewheels[1000]; // Зона пробития колёс
-new spikepickup[1000]; // Сфера для возможности снятия шипов
-new spikepick[MAX_PLAYERS] = -1; // Проверка на возможность снять шипы
-new spiketrucks[MAX_PLAYERS] = 0; // Проверка на возможность снять шипы
+new spikesmax[MAX_PLAYERS] = 0; // РџСЂРѕРІРµСЂРєР° РЅР° РєРѕР»-РІРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹С… С€РёРїРѕРІ
+new spikesobj[1000]; // РћР±СЉРµРєС‚С‹, РїСЂРёРІСЏР·РєР° Рє РёРґСѓ РѕР±СЉРµРєС‚РѕРІ
+new spikesobjslot[1000] = 0; // РџРѕРјРµС‚РєР° Рѕ Р·Р°РЅСЏС‚С‹С… РѕР±СЉРµРєС‚Р°С…
+new spikeowner[1000][MAX_PLAYER_NAME]; // Р’Р»Р°РґРµР»СЊС†С‹ С€РёРїРѕРІ
+new Text3D:spikes3d[1000]; // 3dtext Рє С€РёРїР°Рј
+new spikewheels[1000]; // Р—РѕРЅР° РїСЂРѕР±РёС‚РёСЏ РєРѕР»С‘СЃ
+new spikepickup[1000]; // РЎС„РµСЂР° РґР»СЏ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё СЃРЅСЏС‚РёСЏ С€РёРїРѕРІ
+new spikepick[MAX_PLAYERS] = -1; // РџСЂРѕРІРµСЂРєР° РЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СЃРЅСЏС‚СЊ С€РёРїС‹
+new spiketrucks[MAX_PLAYERS] = 0; // РџСЂРѕРІРµСЂРєР° РЅР° РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ СЃРЅСЏС‚СЊ С€РёРїС‹
 
 // BORT
 
@@ -17,7 +17,7 @@ new	bortname[160][128];
 new bortowner[160][MAX_PLAYER_NAME];
 new bortobj[160];
 new bortSphere[160];
-new bortSphereDist[MAX_PLAYERS] = 0; // Проверка на расстояние
+new bortSphereDist[MAX_PLAYERS] = 0; // РџСЂРѕРІРµСЂРєР° РЅР° СЂР°СЃСЃС‚РѕСЏРЅРёРµ
 new bortobjid[160];
 new editbortmode[MAX_PLAYERS] = 0;
 new editbortmodenc[MAX_PLAYERS] = 0;
@@ -30,7 +30,7 @@ new Float:bortobjY[160];
 new Float:bortobjZ[160];
 
 
-// Добавить в переменные к игроку:  pSpikers + учёт кол-ва шипов на акк
+// Р”РѕР±Р°РІРёС‚СЊ РІ РїРµСЂРµРјРµРЅРЅС‹Рµ Рє РёРіСЂРѕРєСѓ:  pSpikers + СѓС‡С‘С‚ РєРѕР»-РІР° С€РёРїРѕРІ РЅР° Р°РєРє
 
 public OnPlayerEnterDynamicArea(playerid, areaid)
 {
@@ -66,13 +66,13 @@ public OnPlayerEnterDynamicArea(playerid, areaid)
 	return true;
 }
 
-public OnPlayerConnect(playerid) // ЛИБО СЮДА ЛИБО В АВТОРИЗАЦИЮ ЗАСУНУТЬ
+public OnPlayerConnect(playerid) // Р›РР‘Рћ РЎР®Р”Рђ Р›РР‘Рћ Р’ РђР’РўРћР РР—РђР¦РР® Р—РђРЎРЈРќРЈРўР¬
 {
 	// SPIKES
-	spikesmax[playerid] = 0; // Проверка на кол-во установленных шипов
+	spikesmax[playerid] = 0; // РџСЂРѕРІРµСЂРєР° РЅР° РєРѕР»-РІРѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹С… С€РёРїРѕРІ
 
 	// BORT
-	bortSphereDist[playerid] = 0; // Проверка на расстояние
+	bortSphereDist[playerid] = 0; // РџСЂРѕРІРµСЂРєР° РЅР° СЂР°СЃСЃС‚РѕСЏРЅРёРµ
 	editbortmode[playerid] = 0;
 	editbortmodenc[playerid] = 0;
 	bortactiveslot[playerid] = 0;
@@ -93,22 +93,22 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        new tbortname[128];
    			switch(listitem)
 	    	{
-				case 0:	{	tbortname = "Дорожный барьер #1";	bortselobj = 1427;	}
-				case 1:	{	tbortname = "Дорожный барьер #2";	bortselobj = 1422;	}
-				case 2:	{	tbortname = "Дорожный барьер #3";	bortselobj = 1434;	}
-				case 3:	{	tbortname = "Дорожный барьер #4";	bortselobj = 1459;	}
-				case 4:	{	tbortname = "Дорожный барьер #5";	bortselobj = 1228;	}
-				case 5:	{	tbortname = "Дорожный барьер #6";	bortselobj = 1423;	}
-				case 6:	{	tbortname = "Дорожный барьер #7";	bortselobj = 1424;	}
-				case 7:	{	tbortname = "Дорожный барьер #8";	bortselobj = 1282;	}
-				case 8:	{	tbortname = "Дорожный барьер #9";	bortselobj = 1435;	}
-				case 9:	{	tbortname = "Дорожный конус";	bortselobj = 1238;	}
-				case 10:{	tbortname = "Водный барьер";	bortselobj = 1237;	}
-				case 11:{	tbortname = "Отбойник";	bortselobj = 979;	}
-				case 12:{	tbortname = "Оранжевый дорожный барьер с надписью Detour";	bortselobj = 1425;	}
-				case 13:{	tbortname = "Барьер с надписью LINE CLOSED";	bortselobj = 3091;	}
-				case 14:{	tbortname = "Большое ограждение WARNING! CLOSED TO TRAFFIC";	bortselobj = 981;	}
-				case 15:{	tbortname = "Полицейская лента";	bortselobj = 19834;	}
+				case 0:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #1";	bortselobj = 1427;	}
+				case 1:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #2";	bortselobj = 1422;	}
+				case 2:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #3";	bortselobj = 1434;	}
+				case 3:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #4";	bortselobj = 1459;	}
+				case 4:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #5";	bortselobj = 1228;	}
+				case 5:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #6";	bortselobj = 1423;	}
+				case 6:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #7";	bortselobj = 1424;	}
+				case 7:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #8";	bortselobj = 1282;	}
+				case 8:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #9";	bortselobj = 1435;	}
+				case 9:	{	tbortname = "Р”РѕСЂРѕР¶РЅС‹Р№ РєРѕРЅСѓСЃ";	bortselobj = 1238;	}
+				case 10:{	tbortname = "Р’РѕРґРЅС‹Р№ Р±Р°СЂСЊРµСЂ";	bortselobj = 1237;	}
+				case 11:{	tbortname = "РћС‚Р±РѕР№РЅРёРє";	bortselobj = 979;	}
+				case 12:{	tbortname = "РћСЂР°РЅР¶РµРІС‹Р№ РґРѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ СЃ РЅР°РґРїРёСЃСЊСЋ Detour";	bortselobj = 1425;	}
+				case 13:{	tbortname = "Р‘Р°СЂСЊРµСЂ СЃ РЅР°РґРїРёСЃСЊСЋ LINE CLOSED";	bortselobj = 3091;	}
+				case 14:{	tbortname = "Р‘РѕР»СЊС€РѕРµ РѕРіСЂР°Р¶РґРµРЅРёРµ WARNING! CLOSED TO TRAFFIC";	bortselobj = 981;	}
+				case 15:{	tbortname = "РџРѕР»РёС†РµР№СЃРєР°СЏ Р»РµРЅС‚Р°";	bortselobj = 19834;	}
 			}
 			new Float:x,Float:y,Float:z,Float:a;
 			GetPlayerPos(playerid,x,y,z);
@@ -136,7 +136,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
             editbortmode[playerid] = 1;
 			bortactiveslot[playerid] = slot;
-			format(string, 64, "Вы начали установку ограждения '%s'",bortname[slot]);
+			format(string, 64, "Р’С‹ РЅР°С‡Р°Р»Рё СѓСЃС‚Р°РЅРѕРІРєСѓ РѕРіСЂР°Р¶РґРµРЅРёСЏ '%s'",bortname[slot]);
 			SendClientMessage(playerid, 0xFFFFFFFF, string);
 			DestroyDynamicObject(bortobj[slot]);
 			DestroyDynamicArea(bortSphere[slot]);
@@ -158,16 +158,16 @@ CMD:spikes(playerid, params[])
     if(PTEMP[playerid][pLogin] == 0) return true;
     new param[32];
     new param2;
-	if(sscanf(params, "s[16]D", param, param2))	{	return SendClientMessage(playerid, 0xFFFFFFFF, "Введите: /spikes [place/pickup/give/trunk]"); }
+	if(sscanf(params, "s[16]D", param, param2))	{	return SendClientMessage(playerid, 0xFFFFFFFF, "Р’РІРµРґРёС‚Рµ: /spikes [place/pickup/give/trunk]"); }
 	if(strcmp(param,"place",true) == 0)
 	{
 		if(GetPVarInt(playerid,"Fraction_Duty") && ((PTEMP[playerid][pMember] == 1) || (PTEMP[playerid][pMember] == 2) || (PTEMP[playerid][pMember] == 17) || (PTEMP[playerid][pMember] == 18)))
 		{
-			if(PTEMP[playerid][pSpikers] == 0) return SendClientMessage(playerid, 0xFFFFFFFF, "У вас нет шипов в инвентаре");
-		    if(GetPlayerInterior(playerid) != 0 || GetPlayerVirtualWorld(playerid) != 0) return SendClientMessage(playerid, 0xFFFFFFFF, "Вы должны быть на улице!");
-			if(IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid, 0xFFFFFFFF, "Вы не должны быть в машине!");
-			if (spikepick[playerid] >= 0) return SendClientMessage(playerid, 0xFFFFFFFF, "Рядом уже есть шипы");
-		    if(spikesmax[playerid] >= 2) return SendClientMessage(playerid, 0xFFFFFFFF, "Вы установили максимальное количество шипов");
+			if(PTEMP[playerid][pSpikers] == 0) return SendClientMessage(playerid, 0xFFFFFFFF, "РЈ РІР°СЃ РЅРµС‚ С€РёРїРѕРІ РІ РёРЅРІРµРЅС‚Р°СЂРµ");
+		    if(GetPlayerInterior(playerid) != 0 || GetPlayerVirtualWorld(playerid) != 0) return SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РЅР° СѓР»РёС†Рµ!");
+			if(IsPlayerInAnyVehicle(playerid)) return SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹ РЅРµ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РІ РјР°С€РёРЅРµ!");
+			if (spikepick[playerid] >= 0) return SendClientMessage(playerid, 0xFFFFFFFF, "Р СЏРґРѕРј СѓР¶Рµ РµСЃС‚СЊ С€РёРїС‹");
+		    if(spikesmax[playerid] >= 2) return SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹ СѓСЃС‚Р°РЅРѕРІРёР»Рё РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ С€РёРїРѕРІ");
 			else { spikesmax[playerid]++; }
 			new spikesid;
 	        for(new i = 0; i <= 1000; i++)
@@ -180,7 +180,7 @@ CMD:spikes(playerid, params[])
 	            }
 	            continue;
 	        }
-			new Float:a, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, Float:x3, Float:y3, Float:z3; // 1 - изначальное место. 2 - место для установки объекта и3д 3 - конец место для проколки шин
+			new Float:a, Float:x1, Float:y1, Float:z1, Float:x2, Float:y2, Float:z2, Float:x3, Float:y3, Float:z3; // 1 - РёР·РЅР°С‡Р°Р»СЊРЅРѕРµ РјРµСЃС‚Рѕ. 2 - РјРµСЃС‚Рѕ РґР»СЏ СѓСЃС‚Р°РЅРѕРІРєРё РѕР±СЉРµРєС‚Р° Рё3Рґ 3 - РєРѕРЅРµС† РјРµСЃС‚Рѕ РґР»СЏ РїСЂРѕРєРѕР»РєРё С€РёРЅ
 			GetPlayerPos(playerid, x1, y1, z1);
 	        GetPlayerFacingAngle(playerid, a);
 	        x2 = x1; x2 +=(5.2 * floatsin(-a, degrees));
@@ -191,7 +191,7 @@ CMD:spikes(playerid, params[])
 			new playername[MAX_PLAYER_NAME];
 	     	GetPlayerName(playerid, playername, sizeof(playername));
 			spikeowner[spikesid] = playername;
-			format(string, 128, "Шипы #%d\nУстановил: %s",spikesid,spikeowner[spikesid]);
+			format(string, 128, "РЁРёРїС‹ #%d\nРЈСЃС‚Р°РЅРѕРІРёР»: %s",spikesid,spikeowner[spikesid]);
 	    	spikes3d[spikesid] = Create3DTextLabel(string, 0x80808077, x2, y2, z2+0.5, 25.0 , 0, 1);
 			spikepickup[spikesid] = CreateDynamicSphere(x2, y2, z2, 7, 0, 0, -1);
 	        x3 = x1; x3+=(10.2 * floatsin(-a, degrees));
@@ -199,7 +199,7 @@ CMD:spikes(playerid, params[])
 			z3 = z1+1;	z1 = z1-0.5;
 			spikewheels[spikesid] = CreateDynamicCube(x1, y1, z1, x3, y3, z3, 0, 0, -1);
 			PTEMP[playerid][pSpikers]--;
-	        SendClientMessage(playerid, 0xFFFFFFFF, "Вы установили шипы");
+	        SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹ СѓСЃС‚Р°РЅРѕРІРёР»Рё С€РёРїС‹");
 	        spikepick[playerid] = spikesid;
 	        return true;
 		}
@@ -216,7 +216,7 @@ CMD:spikes(playerid, params[])
      			GetPlayerName(playerid, playername, sizeof(playername));
      			if (strlen(spikeowner[spikesid]) != strlen(playername))
 			 	{
-					format(string, 128, "Вы не устанавливали шипы #%d",spikesid);
+					format(string, 128, "Р’С‹ РЅРµ СѓСЃС‚Р°РЅР°РІР»РёРІР°Р»Рё С€РёРїС‹ #%d",spikesid);
 			 		SendClientMessage(playerid, 0xFFFFFFFF, string);
 					return true;
 				}
@@ -227,7 +227,7 @@ CMD:spikes(playerid, params[])
                 spikesobjslot[spikesid] = 0;
 				spikepick[playerid] = -1;
                 spikeowner[spikesid] = "";
-                SendClientMessage(playerid, 0xFFFFFFFF, "Вы подняли шипы с земли");
+                SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹ РїРѕРґРЅСЏР»Рё С€РёРїС‹ СЃ Р·РµРјР»Рё");
                 spikesmax[playerid]--;
 				PTEMP[playerid][pSpikers]++;
  	        	return true;
@@ -238,22 +238,22 @@ CMD:spikes(playerid, params[])
 	}
 	else if(strcmp(param,"give",true) == 0)
 	{
-		if(sscanf(params, "s[16]i", params[0], params[1]))	return SendClientMessage(playerid, 0xFFFFFFFF, "Введите: /spikes give [id]");
-		if(ProxDetectorS(5.0, playerid, params[1])) {} else return SendClientMessage(playerid, COLOR_GREY, "Человек далеко от вас!");
-		if(PTEMP[playerid][pSpikers] == 0) return SendClientMessage(playerid, COLOR_GREY, "У вас нет шипов в инвентаре");
-		// Тут по идее нужно кинуть предложение взять шипы. Принять через /accept, как прописано у вас незнаю, думаю сами подконнектите к своему коду, я то хз чо у вас там, чо гадать :)
+		if(sscanf(params, "s[16]i", params[0], params[1]))	return SendClientMessage(playerid, 0xFFFFFFFF, "Р’РІРµРґРёС‚Рµ: /spikes give [id]");
+		if(ProxDetectorS(5.0, playerid, params[1])) {} else return SendClientMessage(playerid, COLOR_GREY, "Р§РµР»РѕРІРµРє РґР°Р»РµРєРѕ РѕС‚ РІР°СЃ!");
+		if(PTEMP[playerid][pSpikers] == 0) return SendClientMessage(playerid, COLOR_GREY, "РЈ РІР°СЃ РЅРµС‚ С€РёРїРѕРІ РІ РёРЅРІРµРЅС‚Р°СЂРµ");
+		// РўСѓС‚ РїРѕ РёРґРµРµ РЅСѓР¶РЅРѕ РєРёРЅСѓС‚СЊ РїСЂРµРґР»РѕР¶РµРЅРёРµ РІР·СЏС‚СЊ С€РёРїС‹. РџСЂРёРЅСЏС‚СЊ С‡РµСЂРµР· /accept, РєР°Рє РїСЂРѕРїРёСЃР°РЅРѕ Сѓ РІР°СЃ РЅРµР·РЅР°СЋ, РґСѓРјР°СЋ СЃР°РјРё РїРѕРґРєРѕРЅРЅРµРєС‚РёС‚Рµ Рє СЃРІРѕРµРјСѓ РєРѕРґСѓ, СЏ С‚Рѕ С…Р· С‡Рѕ Сѓ РІР°СЃ С‚Р°Рј, С‡Рѕ РіР°РґР°С‚СЊ :)
 
-		// Когда игрок прописал /accept spikes туда код:
+		// РљРѕРіРґР° РёРіСЂРѕРє РїСЂРѕРїРёСЃР°Р» /accept spikes С‚СѓРґР° РєРѕРґ:
 
 		/*
-		if(((carspicks[playerid] == 1) && (PTEMP[playerid][pSpikers] >= 1)) || (PTEMP[playerid][pSpikers] => 2)) return SendClientMessage(playerid, COLOR_GREY, "У вас достигнут лимит шипов");
+		if(((carspicks[playerid] == 1) && (PTEMP[playerid][pSpikers] >= 1)) || (PTEMP[playerid][pSpikers] => 2)) return SendClientMessage(playerid, COLOR_GREY, "РЈ РІР°СЃ РґРѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ С€РёРїРѕРІ");
 		PTEMP[playerid][pSpikers]++;
-		// Получить ид того кто предложил взять шипы
+		// РџРѕР»СѓС‡РёС‚СЊ РёРґ С‚РѕРіРѕ РєС‚Рѕ РїСЂРµРґР»РѕР¶РёР» РІР·СЏС‚СЊ С€РёРїС‹
 		PTEMP[IDIDID][pSpikers]--;
 		new playername[MAX_PLAYER_NAME];
 		GetPlayerName(playerid, playername, sizeof(playername));
-		format(string, 128, "Вы передали шипы: %s",playername);
-		SendClientMessage(IDIDID, 0xFFFFFFFF, string); // Отправить тому кто отдал шипы
+		format(string, 128, "Р’С‹ РїРµСЂРµРґР°Р»Рё С€РёРїС‹: %s",playername);
+		SendClientMessage(IDIDID, 0xFFFFFFFF, string); // РћС‚РїСЂР°РІРёС‚СЊ С‚РѕРјСѓ РєС‚Рѕ РѕС‚РґР°Р» С€РёРїС‹
 		*/
 
 		return true;
@@ -261,27 +261,27 @@ CMD:spikes(playerid, params[])
 	else if(strcmp(param,"trunk",true) == 0)
 	{
 	    new carspicks;
-	    // Если рядом машина с багажником, определить ид машины. ЕСЛИ НЕТ РЯДОМ МАШИНЫ ТО СООБЩЕНИЕ ИГРОКУ ЧТО РЯДОМ НЕТ МАШИНЫ
-		// Есть ли в багажнике есть шипы, если есть то carspicks = 1; Если нет то carspicks = 0;
+	    // Р•СЃР»Рё СЂСЏРґРѕРј РјР°С€РёРЅР° СЃ Р±Р°РіР°Р¶РЅРёРєРѕРј, РѕРїСЂРµРґРµР»РёС‚СЊ РёРґ РјР°С€РёРЅС‹. Р•РЎР›Р РќР•Рў Р РЇР”РћРњ РњРђРЁРРќР« РўРћ РЎРћРћР‘Р©Р•РќРР• РР“Р РћРљРЈ Р§РўРћ Р РЇР”РћРњ РќР•Рў РњРђРЁРРќР«
+		// Р•СЃС‚СЊ Р»Рё РІ Р±Р°РіР°Р¶РЅРёРєРµ РµСЃС‚СЊ С€РёРїС‹, РµСЃР»Рё РµСЃС‚СЊ С‚Рѕ carspicks = 1; Р•СЃР»Рё РЅРµС‚ С‚Рѕ carspicks = 0;
 		if (carspicks == 0)
 		{
-			// Положить шипы в багажник
+			// РџРѕР»РѕР¶РёС‚СЊ С€РёРїС‹ РІ Р±Р°РіР°Р¶РЅРёРє
 			spiketrucks[playerid] = 1;
 			PTEMP[playerid][pSpikers]--;
-   			SendClientMessage(playerid, 0xFFFFFFFF, "Вы положили шипы в багажник");
+   			SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹ РїРѕР»РѕР¶РёР»Рё С€РёРїС‹ РІ Р±Р°РіР°Р¶РЅРёРє");
    			return true;
 		}
 		else
 		{
-            if (PTEMP[playerid][pSpikers] >= 2) return SendClientMessage(playerid, 0xFFFFFFFF, "У вас достигнут лимит шипов");
-            // Забираем шипы из багажника
+            if (PTEMP[playerid][pSpikers] >= 2) return SendClientMessage(playerid, 0xFFFFFFFF, "РЈ РІР°СЃ РґРѕСЃС‚РёРіРЅСѓС‚ Р»РёРјРёС‚ С€РёРїРѕРІ");
+            // Р—Р°Р±РёСЂР°РµРј С€РёРїС‹ РёР· Р±Р°РіР°Р¶РЅРёРєР°
 			spiketrucks[playerid] = 0;
 			PTEMP[playerid][pSpikers]++;
-			SendClientMessage(playerid, 0xFFFFFFFF, "Вы взяли шипы из багажника");
+			SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹ РІР·СЏР»Рё С€РёРїС‹ РёР· Р±Р°РіР°Р¶РЅРёРєР°");
 		}
 		return true;
 	}
-	return SendClientMessage(playerid, 0xFFFFFFFF, "Введите: /spikes [place/pickup/give/trunk]");
+	return SendClientMessage(playerid, 0xFFFFFFFF, "Р’РІРµРґРёС‚Рµ: /spikes [place/pickup/give/trunk]");
 }
 
 // BORT
@@ -293,10 +293,10 @@ CMD:bort(playerid, params[])
 	{
 	    new param[16];
 		new param2;
-		if(sscanf(params, "s[16]D", param,param2))	{	return SendClientMessage(playerid, 0xFFFFFFFF, "Введите: /bort [list, create, edit, remove]"); }
+		if(sscanf(params, "s[16]D", param,param2))	{	return SendClientMessage(playerid, 0xFFFFFFFF, "Р’РІРµРґРёС‚Рµ: /bort [list, create, edit, remove]"); }
 		if(strcmp(param,"list",true) == 0)
 		{
-			format(string, 64, "{FFFFFF}Название\t{FFFFFF}ID объекта\t{FFFFFF}Никнейм");
+			format(string, 64, "{FFFFFF}РќР°Р·РІР°РЅРёРµ\t{FFFFFF}ID РѕР±СЉРµРєС‚Р°\t{FFFFFF}РќРёРєРЅРµР№Рј");
 			new icount = 0;
 			for(new i = 0; i <= 159; i++)
 		    {
@@ -307,7 +307,7 @@ CMD:bort(playerid, params[])
 				}
 				continue;
 		    }
- 			ShowPlayerDialog(playerid, 81023, DIALOG_STYLE_TABLIST_HEADERS, "{FFFFFF}Список ограждений",string,"Закрыть", "Отмена");
+ 			ShowPlayerDialog(playerid, 81023, DIALOG_STYLE_TABLIST_HEADERS, "{FFFFFF}РЎРїРёСЃРѕРє РѕРіСЂР°Р¶РґРµРЅРёР№",string,"Р—Р°РєСЂС‹С‚СЊ", "РћС‚РјРµРЅР°");
  			return true;
 		}
 		else if(strcmp(param,"create",true) == 0)
@@ -321,25 +321,25 @@ CMD:bort(playerid, params[])
 				}
 				continue;
 		    }
-		    if (icount >= 40) return SendClientMessage(playerid, 0xFFFFFFFF, "Вы достигли лимита установленных ограждений");
-			return ShowPlayerDialog(playerid, 8113, DIALOG_STYLE_TABLIST_HEADERS, "{FFFFFF}Выбор ограждения",
-			"{FFFFFF}Название\t{FFFFFF}ID объекта\n\
-			Дорожный барьер #1 \t 1427\n\
-			Дорожный барьер #2 \t 1422\n\
-			Дорожный барьер #3 \t 1434\n\
-			Дорожный барьер #4 \t 1459\n\
-			Дорожный барьер #5 \t 1228\n\
-			Дорожный барьер #6 \t 1423\n\
-			Дорожный барьер #7 \t 1424\n\
-			Дорожный барьер #8 \t 1282\n\
-			Дорожный барьер #9 \t 1435\n\
-			Дорожный конус \t 1238\n\
-			Водный барьер \t 1237\n\
-			Отбойник \t 979\n\
-			Оранжевый дорожный барьер с надписью Detour \t 1425\n\
-			Барьер с надписью LINE CLOSED \t 3091\n\
-			Большое ограждение WARNING! CLOSED TO TRAFFIC \t 981\n\
-			Полицейская лента \t 19834","Создать", "Отмена");
+		    if (icount >= 40) return SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹ РґРѕСЃС‚РёРіР»Рё Р»РёРјРёС‚Р° СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹С… РѕРіСЂР°Р¶РґРµРЅРёР№");
+			return ShowPlayerDialog(playerid, 8113, DIALOG_STYLE_TABLIST_HEADERS, "{FFFFFF}Р’С‹Р±РѕСЂ РѕРіСЂР°Р¶РґРµРЅРёСЏ",
+			"{FFFFFF}РќР°Р·РІР°РЅРёРµ\t{FFFFFF}ID РѕР±СЉРµРєС‚Р°\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #1 \t 1427\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #2 \t 1422\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #3 \t 1434\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #4 \t 1459\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #5 \t 1228\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #6 \t 1423\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #7 \t 1424\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #8 \t 1282\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ #9 \t 1435\n\
+			Р”РѕСЂРѕР¶РЅС‹Р№ РєРѕРЅСѓСЃ \t 1238\n\
+			Р’РѕРґРЅС‹Р№ Р±Р°СЂСЊРµСЂ \t 1237\n\
+			РћС‚Р±РѕР№РЅРёРє \t 979\n\
+			РћСЂР°РЅР¶РµРІС‹Р№ РґРѕСЂРѕР¶РЅС‹Р№ Р±Р°СЂСЊРµСЂ СЃ РЅР°РґРїРёСЃСЊСЋ Detour \t 1425\n\
+			Р‘Р°СЂСЊРµСЂ СЃ РЅР°РґРїРёСЃСЊСЋ LINE CLOSED \t 3091\n\
+			Р‘РѕР»СЊС€РѕРµ РѕРіСЂР°Р¶РґРµРЅРёРµ WARNING! CLOSED TO TRAFFIC \t 981\n\
+			РџРѕР»РёС†РµР№СЃРєР°СЏ Р»РµРЅС‚Р° \t 19834","РЎРѕР·РґР°С‚СЊ", "РћС‚РјРµРЅР°");
 		}
 		else if(strcmp(param,"edit",true) == 0)
 		{
@@ -351,8 +351,8 @@ CMD:bort(playerid, params[])
             		if (bortSphereDist[playerid] == 1) { distancecheck = 1; break; }
 					continue;
 			    }
-				if (distancecheck == 1) return SendClientMessage(playerid, 0xFFFFFFFF, "Рядом нет ограждения для редактирования");
-				SendClientMessage(playerid, 0xFFFFFFFF, "Выберите ограждение для редактирования");
+				if (distancecheck == 1) return SendClientMessage(playerid, 0xFFFFFFFF, "Р СЏРґРѕРј РЅРµС‚ РѕРіСЂР°Р¶РґРµРЅРёСЏ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ");
+				SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹Р±РµСЂРёС‚Рµ РѕРіСЂР°Р¶РґРµРЅРёРµ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ");
 				borteditobj[playerid] = 1;
 				bortactiveslot[playerid] = 0;
 				SelectObject(playerid);
@@ -366,17 +366,17 @@ CMD:bort(playerid, params[])
 	        GetPlayerPos(playerid, px, py, pz);
 
 	        new distance = floatround(floatsqroot(floatpower(px - x, 2) + floatpower(py - y, 2) + floatpower(pz - z, 2)));
-			if (distance > 25) return SendClientMessage(playerid, 0xFFFFFFFF, "Рядом нет ограждения для редактирования");
+			if (distance > 25) return SendClientMessage(playerid, 0xFFFFFFFF, "Р СЏРґРѕРј РЅРµС‚ РѕРіСЂР°Р¶РґРµРЅРёСЏ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ");
     		new playername[MAX_PLAYER_NAME];
  			GetPlayerName(playerid, playername, sizeof(playername));
 
  			if (strlen(bortowner[bordobjectid]) != strlen(playername))
 		 	{
-				format(string, 128, "Вы не устанавливали ограждение #%d",bordobjectid);
+				format(string, 128, "Р’С‹ РЅРµ СѓСЃС‚Р°РЅР°РІР»РёРІР°Р»Рё РѕРіСЂР°Р¶РґРµРЅРёРµ #%d",bordobjectid);
 		 		SendClientMessage(playerid, 0xFFFFFFFF, string);
 				return true;
 			}
-			format(string, 128, "Вы редактируете ограждение #%d",bordobjectid);
+			format(string, 128, "Р’С‹ СЂРµРґР°РєС‚РёСЂСѓРµС‚Рµ РѕРіСЂР°Р¶РґРµРЅРёРµ #%d",bordobjectid);
 	 		SendClientMessage(playerid, 0xFFFFFFFF, string);
 		    editbortmodenc[playerid] = 1;
 			bortactiveslot[playerid] = bordobjectid;
@@ -389,7 +389,7 @@ CMD:bort(playerid, params[])
 		{
 			if(sscanf(params, "s[16]d", params[0], params[1]))
 			{
-				SendClientMessage(playerid, 0xFFFFFFFF, "Выберите ограждение для редактирования");
+				SendClientMessage(playerid, 0xFFFFFFFF, "Р’С‹Р±РµСЂРёС‚Рµ РѕРіСЂР°Р¶РґРµРЅРёРµ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ");
 				bortremoveobj[playerid] = 1;
 				SelectObject(playerid);
 				return true;
@@ -401,12 +401,12 @@ CMD:bort(playerid, params[])
 			new Float: px, Float: py, Float: pz;
 	        GetPlayerPos(playerid, px, py, pz);
 	        new distance = floatround(floatsqroot(floatpower(px - x, 2) + floatpower(py - y, 2) + floatpower(pz - z, 2)));
-            if (distance > 25)	return SendClientMessage(playerid, 0xFFFFFFFF, "Рядом нет ограждения для удаления");
+            if (distance > 25)	return SendClientMessage(playerid, 0xFFFFFFFF, "Р СЏРґРѕРј РЅРµС‚ РѕРіСЂР°Р¶РґРµРЅРёСЏ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ");
     		new playername[MAX_PLAYER_NAME];
  			GetPlayerName(playerid, playername, sizeof(playername));
  			if (strlen(bortowner[bordobjectid]) != strlen(playername))
 		 	{
-				format(string, 128, "Вы не устанавливали ограждение #%d",bordobjectid);
+				format(string, 128, "Р’С‹ РЅРµ СѓСЃС‚Р°РЅР°РІР»РёРІР°Р»Рё РѕРіСЂР°Р¶РґРµРЅРёРµ #%d",bordobjectid);
 		 		SendClientMessage(playerid, 0xFFFFFFFF, string);
 				return true;
 			}
@@ -414,11 +414,11 @@ CMD:bort(playerid, params[])
 			DestroyDynamicArea(bortSphere[bordobjectid]);
 			Delete3DTextLabel(bort3d[bordobjectid]);
 			bortslot[bordobjectid] = 0;
-			format(string, 128, "Вы удалили ограждение #%d",bordobjectid);
+			format(string, 128, "Р’С‹ СѓРґР°Р»РёР»Рё РѕРіСЂР°Р¶РґРµРЅРёРµ #%d",bordobjectid);
 	 		SendClientMessage(playerid, 0xFFFFFFFF, string);
 	  		return true;
 		}
-		return SendClientMessage(playerid, 0xFFFFFFFF, "Введите: /bort [list, create, edit, remove]");
+		return SendClientMessage(playerid, 0xFFFFFFFF, "Р’РІРµРґРёС‚Рµ: /bort [list, create, edit, remove]");
 	}
 	return true;
 }
@@ -442,7 +442,7 @@ public OnPlayerEditDynamicObject( playerid, objectid, response, Float:x, Float:y
 				{
 					DestroyDynamicObject(bortobj[slot]);
                     DestroyDynamicArea(bortSphere[slot]);
-					format(string, 128, "Вы попытались установить ограждение далеко. Объект не был установлен");
+					format(string, 128, "Р’С‹ РїРѕРїС‹С‚Р°Р»РёСЃСЊ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РѕРіСЂР°Р¶РґРµРЅРёРµ РґР°Р»РµРєРѕ. РћР±СЉРµРєС‚ РЅРµ Р±С‹Р» СѓСЃС‚Р°РЅРѕРІР»РµРЅ");
 					SendClientMessage(playerid, 0xFFFFFFFF, string);
 					bortslot[slot] = 0;
 		            editbortmode[playerid] = 0;
@@ -451,15 +451,15 @@ public OnPlayerEditDynamicObject( playerid, objectid, response, Float:x, Float:y
 				}
 				else if(editbortmodenc[playerid] == 1)
 				{
-					format(string, 128, "Вы попытались установить ограждение далеко. Объект возвращен на исходное положение");
+					format(string, 128, "Р’С‹ РїРѕРїС‹С‚Р°Р»РёСЃСЊ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РѕРіСЂР°Р¶РґРµРЅРёРµ РґР°Р»РµРєРѕ. РћР±СЉРµРєС‚ РІРѕР·РІСЂР°С‰РµРЅ РЅР° РёСЃС…РѕРґРЅРѕРµ РїРѕР»РѕР¶РµРЅРёРµ");
 					SendClientMessage(playerid, 0xFFFFFFFF, string);
        				DestroyDynamicObject(bortobj[slot]);
 					DestroyDynamicArea(bortSphere[slot]);
 					bortobj[slot] = CreateDynamicObject(bortobjid[slot],bortobjX[slot], bortobjY[slot], bortobjZ[slot],0,0,0);
 					bortSphere[slot] = CreateDynamicSphere(bortobjX[slot], bortobjY[slot], bortobjZ[slot], 25, 0, 0, -1);
-					format(string, 128, "Ограждение #%d\nУстановил: %s",slot,bortowner[slot]);
+					format(string, 128, "РћРіСЂР°Р¶РґРµРЅРёРµ #%d\nРЈСЃС‚Р°РЅРѕРІРёР»: %s",slot,bortowner[slot]);
 			 		bort3d[slot] = Create3DTextLabel(string, 0x80808077, bortobjX[slot], bortobjY[slot], bortobjZ[slot]+1, 25.0 , 0, 1);
-					format(string, 64, "Вы отменили редактирование ограждения '%d'",slot);
+					format(string, 64, "Р’С‹ РѕС‚РјРµРЅРёР»Рё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РѕРіСЂР°Р¶РґРµРЅРёСЏ '%d'",slot);
 					SendClientMessage(playerid, 0xFFFFFFFF, string);
 				    editbortmodenc[playerid] = 0;
 					bortactiveslot[playerid] = 0;
@@ -474,9 +474,9 @@ public OnPlayerEditDynamicObject( playerid, objectid, response, Float:x, Float:y
                 DestroyDynamicArea(bortSphere[slot]);
 				bortobj[slot] = CreateDynamicObject(bortobjid[slot],x, y,z,0,0,0);
 				bortSphere[slot] = CreateDynamicSphere(x, y, z, 25, 0, 0, -1);
-				format(string, 128, "Вы установили ограждение '%s' под номером %d",bortname[slot],slot);
+				format(string, 128, "Р’С‹ СѓСЃС‚Р°РЅРѕРІРёР»Рё РѕРіСЂР°Р¶РґРµРЅРёРµ '%s' РїРѕРґ РЅРѕРјРµСЂРѕРј %d",bortname[slot],slot);
 				SendClientMessage(playerid, 0xFFFFFFFF, string);
-				format(string, 128, "Ограждение #%d\nУстановил: %s",slot,bortowner[slot]);
+				format(string, 128, "РћРіСЂР°Р¶РґРµРЅРёРµ #%d\nРЈСЃС‚Р°РЅРѕРІРёР»: %s",slot,bortowner[slot]);
 		 		bort3d[slot] = Create3DTextLabel(string, 0x80808077, x, y, z+1, 25.0 , 0, 1);
 	            editbortmode[playerid] = 0;
 				bortactiveslot[playerid] = 0;
@@ -494,9 +494,9 @@ public OnPlayerEditDynamicObject( playerid, objectid, response, Float:x, Float:y
 				Delete3DTextLabel(bort3d[slot]);
    				bortobj[slot] = CreateDynamicObject(bortobjid[slot],x, y,z,0,0,0);
 				bortSphere[slot] = CreateDynamicSphere(x, y, z, 25, 0, 0, -1);
-				format(string, 128, "Вы изменили положение у ограждения %d",slot);
+				format(string, 128, "Р’С‹ РёР·РјРµРЅРёР»Рё РїРѕР»РѕР¶РµРЅРёРµ Сѓ РѕРіСЂР°Р¶РґРµРЅРёСЏ %d",slot);
 				SendClientMessage(playerid, 0xFFFFFFFF, string);
-				format(string, 128, "Ограждение #%d\nУстановил: %s",slot,bortowner[slot]);
+				format(string, 128, "РћРіСЂР°Р¶РґРµРЅРёРµ #%d\nРЈСЃС‚Р°РЅРѕРІРёР»: %s",slot,bortowner[slot]);
 		 		bort3d[slot] = Create3DTextLabel(string, 0x80808077, x, y, z+1, 25.0 , 0, 1);
 	            editbortmode[playerid] = 0;
 				bortactiveslot[playerid] = 0;
@@ -511,7 +511,7 @@ public OnPlayerEditDynamicObject( playerid, objectid, response, Float:x, Float:y
 			new slot = bortactiveslot[playerid];
 			if(editbortmode[playerid] == 1)
 			{
-				format(string, 64, "Вы отменили установку ограждения '%s'",bortname[slot]);
+				format(string, 64, "Р’С‹ РѕС‚РјРµРЅРёР»Рё СѓСЃС‚Р°РЅРѕРІРєСѓ РѕРіСЂР°Р¶РґРµРЅРёСЏ '%s'",bortname[slot]);
 				SendClientMessage(playerid, 0xFFFFFFFF, string);
 				bortslot[slot] = 0;
 	            editbortmode[playerid] = 0;
@@ -526,9 +526,9 @@ public OnPlayerEditDynamicObject( playerid, objectid, response, Float:x, Float:y
 				bortobj[slot] = CreateDynamicObject(bortobjid[slot],bortobjX[slot], bortobjY[slot], bortobjZ[slot],0,0,0);
 				bortSphere[slot] = CreateDynamicSphere(bortobjX[slot], bortobjY[slot], bortobjZ[slot], 25, 0, 0, -1);
 		 		bort3d[slot] = Create3DTextLabel(string, 0x80808077, bortobjX[slot], bortobjY[slot], bortobjZ[slot]+1, 25.0 , 0, 1);
-				format(string, 64, "Вы отменили редактирование ограждения '%d'",slot);
+				format(string, 64, "Р’С‹ РѕС‚РјРµРЅРёР»Рё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РѕРіСЂР°Р¶РґРµРЅРёСЏ '%d'",slot);
 				SendClientMessage(playerid, 0xFFFFFFFF, string);
-				format(string, 128, "Ограждение #%d\nУстановил: %s",slot,bortowner[slot]);
+				format(string, 128, "РћРіСЂР°Р¶РґРµРЅРёРµ #%d\nРЈСЃС‚Р°РЅРѕРІРёР»: %s",slot,bortowner[slot]);
 			    editbortmodenc[playerid] = 0;
 				bortactiveslot[playerid] = 0;
 				GetPlayerPos(playerid, x,y,z);
@@ -570,18 +570,18 @@ public OnPlayerSelectDynamicObject(playerid, objectid, modelid, Float:x, Float:y
 			if (distance > 25)
 			{
 			    borteditobj[playerid] = 1;
-				SendClientMessage(playerid, 0xFFFFFFFF, "Рядом нет ограждения для редактирования");
+				SendClientMessage(playerid, 0xFFFFFFFF, "Р СЏРґРѕРј РЅРµС‚ РѕРіСЂР°Р¶РґРµРЅРёСЏ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ");
 				return true;
 			}
    			new playername[MAX_PLAYER_NAME];
  			GetPlayerName(playerid, playername, sizeof(playername));
  			if (strlen(bortowner[slot]) != strlen(playername))
 		 	{
-				format(string, 128, "Вы не устанавливали ограждение #%d",slot);
+				format(string, 128, "Р’С‹ РЅРµ СѓСЃС‚Р°РЅР°РІР»РёРІР°Р»Рё РѕРіСЂР°Р¶РґРµРЅРёРµ #%d",slot);
 		 		SendClientMessage(playerid, 0xFFFFFFFF, string);
 				return true;
 			}
-			format(string, 128, "Вы редактируете ограждение #%d",slot);
+			format(string, 128, "Р’С‹ СЂРµРґР°РєС‚РёСЂСѓРµС‚Рµ РѕРіСЂР°Р¶РґРµРЅРёРµ #%d",slot);
 	 		SendClientMessage(playerid, 0xFFFFFFFF, string);
 			Delete3DTextLabel(bort3d[slot]);
 		    EditDynamicObject(playerid,objectid);
@@ -594,7 +594,7 @@ public OnPlayerSelectDynamicObject(playerid, objectid, modelid, Float:x, Float:y
  			GetPlayerName(playerid, playername, sizeof(playername));
  			if (strlen(bortowner[slot]) != strlen(playername))
 		 	{
-				format(string, 128, "Вы не устанавливали ограждение #%d",slot);
+				format(string, 128, "Р’С‹ РЅРµ СѓСЃС‚Р°РЅР°РІР»РёРІР°Р»Рё РѕРіСЂР°Р¶РґРµРЅРёРµ #%d",slot);
 		 		SendClientMessage(playerid, 0xFFFFFFFF, string);
 				return true;
 			}
@@ -602,7 +602,7 @@ public OnPlayerSelectDynamicObject(playerid, objectid, modelid, Float:x, Float:y
 			DestroyDynamicArea(bortSphere[slot]);
 			Delete3DTextLabel(bort3d[slot]);
 			bortslot[slot] = 0;
-			format(string, 128, "Вы удалили ограждение #%d",slot);
+			format(string, 128, "Р’С‹ СѓРґР°Р»РёР»Рё РѕРіСЂР°Р¶РґРµРЅРёРµ #%d",slot);
 	 		SendClientMessage(playerid, 0xFFFFFFFF, string);
             editbortmode[playerid] = 0;
 			return true;
